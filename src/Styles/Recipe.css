@@ -9,6 +9,7 @@
   width: 50%;
   border: none;
   padding: 10px;
+  outline: none;
 }
 
 .search-button {
