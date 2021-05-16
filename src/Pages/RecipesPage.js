@@ -7,24 +7,26 @@ const RecipesPage = () => {
   const [recipes, setRecipes] = useState([]);
   const [input, setInput] = useState("");
   const [search, setSearch] = useState("potato");
-
-  //* fetching recipes on every search.
-  useEffect(() => {
-    getRecipes();
-  }, [search]);
-
+  
   //* setting authentication
   const APP_ID = "b40dd99a";
   const APP_KEY = "51f3a11437ed13254c43a691a3ce627b";
-  const exampleReq = `https://api.edamam.com/search?q=${search}&app_id=${APP_ID}&app_key=${APP_KEY}`;
 
-  //* Function to fetch recipes
-  const getRecipes = async () => {
-    const response = await fetch(exampleReq);
-    const data = await response.json();
-    setRecipes(data.hits);
-    console.log(data.hits);
-  };
+  //* fetching recipes on every search.
+  useEffect(() => {
+    const exampleReq = `https://api.edamam.com/search?q=${search}&app_id=${APP_ID}&app_key=${APP_KEY}`;
+
+    //* Function to fetch recipes
+    const getRecipes = async () => {
+      const response = await fetch(exampleReq);
+      const data = await response.json();
+      setRecipes(data.hits);
+      console.log(data.hits);
+    };
+
+    getRecipes();
+  }, [search]);
+
 
   //* Function to set the input value
   const inputSearch = (e) => {
